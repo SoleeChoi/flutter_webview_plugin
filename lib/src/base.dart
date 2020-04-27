@@ -142,6 +142,7 @@ class FlutterWebviewPlugin {
   /// - [useWideViewPort]: use wide viewport for Android webview ( setUseWideViewPort )
   /// - [ignoreSSLErrors]: use to bypass Android/iOS SSL checks e.g. for self-signed certificates
   /// - [thirdPartyCookiesEnabled]: use to enable third party cookies in the WebView
+  /// - [cacheMode]: use to set cache mode for Android webview
   Future<Null> launch(
     String url, {
     Map<String, String> headers,
@@ -170,6 +171,7 @@ class FlutterWebviewPlugin {
     bool debuggingEnabled,
     bool ignoreSSLErrors,
     bool thirdPartyCookiesEnabled,
+    String cacheMode,
   }) async {
     final args = <String, dynamic>{
       'url': url,
@@ -196,6 +198,7 @@ class FlutterWebviewPlugin {
       'debuggingEnabled': debuggingEnabled ?? false,
       'ignoreSSLErrors': ignoreSSLErrors ?? false,
       'thirdPartyCookiesEnabled': thirdPartyCookiesEnabled ?? false,
+      'cacheMode': cacheMode,
     };
 
     if (headers != null) {

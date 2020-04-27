@@ -129,6 +129,7 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
         boolean debuggingEnabled = call.argument("debuggingEnabled");
         boolean ignoreSSLErrors = call.argument("ignoreSSLErrors");
         boolean thirdPartyCookiesEnabled = call.argument("thirdPartyCookiesEnabled");
+        String cacheMode = call.argument("cacheMode");
 
         if (webViewManager == null || webViewManager.closed == true) {
             Map<String, Object> arguments = (Map<String, Object>) call.arguments;
@@ -164,7 +165,8 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
                 geolocationEnabled,
                 debuggingEnabled,
                 ignoreSSLErrors,
-                thirdPartyCookiesEnabled
+                thirdPartyCookiesEnabled,
+                cacheMode
         );
         result.success(null);
     }

@@ -352,6 +352,26 @@ class WebviewManager {
         webView.clearFormData();
     }
 
+    private void setCacheMode(Boolean appCacheEnabled, String cacheModeString) {
+      Integer cacheMode;
+      if (appCacheEnabled) {
+        switch (cacheModeString) {
+          case "LOAD_CACHE_ONLY":
+            cacheMode = WebSettings.LOAD_CACHE_ONLY;
+            break;
+          case "LOAD_CACHE_ELSE_NETWORK":
+            cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK;
+            break;
+          default:
+            cacheMode = WebSettings.LOAD_DEFAULT;
+            break;
+        }
+      } else {
+        cacheMode = WebSettings.LOAD_NO_CACHE;
+      }
+      webView.getSettings().setCacheMode(cacheMode);
+    }
+
     private void registerJavaScriptChannelNames(List<String> channelNames) {
         for (String channelName : channelNames) {
             webView.addJavascriptInterface(
@@ -381,7 +401,8 @@ class WebviewManager {
             boolean geolocationEnabled,
             boolean debuggingEnabled,
             boolean ignoreSSLErrors,
-            boolean thirdPartyCookiesEnabled
+            boolean thirdPartyCookiesEnabled,
+            String cacheMode
     ) {
         webView.getSettings().setJavaScriptEnabled(withJavascript);
         webView.getSettings().setBuiltInZoomControls(withZoom);
@@ -449,6 +470,10 @@ class WebviewManager {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
           CookieManager.getInstance().setAcceptThirdPartyCookies(webView, thirdPartyCookiesEnabled);
+        }
+
+        if (cacheMode != null) {
+          setCacheMode(appCacheEnabled, cacheMode);
         }
     }
 

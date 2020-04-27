@@ -42,6 +42,7 @@ class WebviewScaffold extends StatefulWidget {
     this.debuggingEnabled = false,
     this.ignoreSSLErrors = false,
     this.thirdPartyCookiesEnabled = false,
+    this.cacheMode,
   }) : super(key: key);
 
   final PreferredSizeWidget appBar;
@@ -76,6 +77,7 @@ class WebviewScaffold extends StatefulWidget {
   final bool debuggingEnabled;
   final bool ignoreSSLErrors;
   final bool thirdPartyCookiesEnabled;
+  final String cacheMode;
 
   @override
   _WebviewScaffoldState createState() => _WebviewScaffoldState();
@@ -183,6 +185,7 @@ class _WebviewScaffoldState extends State<WebviewScaffold> {
               debuggingEnabled: widget.debuggingEnabled,
               ignoreSSLErrors: widget.ignoreSSLErrors,
               thirdPartyCookiesEnabled: widget.thirdPartyCookiesEnabled,
+              cacheMode: widget.cacheMode,
             );
           } else {
             if (_rect != value) {

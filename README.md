@@ -199,6 +199,10 @@ You can test your ignorance if ssl certificates is working e.g. through https://
 ### Enabling third party cookies
 Set the `thirdPartyCookiesEnabled` option to true in the launch function or in the Webview scaffold to enable third party cookies in the WebView. This option is ignored on iOS.
 
+### Set cache mode
+
+Set the `cacheMode` option to override the way the cache is used on Android Webview. It could be `LOAD_CACHE_ONLY`, `LOAD_CACHE_ELSE_NETWORK`, `LOAD_NO_CACHE` or `LOAD_DEFAULT`. The default value is affected by another option `appCacheEnabled`. If `appCacheEnabled` is  true, `cacheMode` is decided by what user set. If `appCacheEnabled` is false, `cacheMode` becomes `LOAD_NO_CACHE`.
+
 
 ### Webview Events
 
@@ -241,6 +245,7 @@ Future<Null> launch(String url, {
     bool debuggingEnabled: false,
     bool ignoreSSLErrors: false,
     bool thirdPartyCookiesEnabled: false,
+    String cacheMode: null,
 });
 ```
 
